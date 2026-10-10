@@ -1,0 +1,1347 @@
+/* ==========================================================================
+   POWER RANGERS S.P.D. (SPACE PATROL DELTA) — TACTICAL COMMAND & OTP HUB
+   High-Tech Delta Base Cyber Aesthetics, Dual Police Siren Flashers,
+   Tactical Glassmorphism, Neon Red & Blue Accents, and Holographic HUD.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@600;700;800&display=swap');
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    /* --- S.P.D. Iconic Tactical Palette --- */
+    --spd-red: #ff0033;
+    --spd-red-glow: rgba(255, 0, 51, 0.6);
+    --spd-red-dim: rgba(255, 0, 51, 0.15);
+    --spd-red-dark: #b80024;
+
+    --spd-blue: #0088ff;
+    --spd-blue-glow: rgba(0, 136, 255, 0.6);
+    --spd-blue-dim: rgba(0, 136, 255, 0.15);
+    --spd-blue-cyan: #00d2ff;
+    --spd-blue-dark: #0055b3;
+
+    --spd-gold: #ffd700;
+    --spd-gold-glow: rgba(255, 215, 0, 0.5);
+    --spd-gold-dim: rgba(255, 215, 0, 0.15);
+
+    --spd-green: #10b981;
+    --spd-green-dim: rgba(16, 185, 129, 0.15);
+    
+    --spd-purple: #a855f7;
+    --spd-purple-dim: rgba(168, 85, 247, 0.15);
+
+    --spd-pink: #ec4899;
+    --spd-pink-dim: rgba(236, 72, 153, 0.15);
+
+    /* --- Theme Tokens (Tactical Gunmetal Cyber Dark) --- */
+    --bg: #030712;
+    --bg2: #060d1a;
+    --bg3: #0a1528;
+    --bg-card: rgba(8, 16, 32, 0.85);
+    --bg-card-solid: #091224;
+    --bg-elevated: #0e1d38;
+    --bg-input: rgba(4, 9, 20, 0.9);
+    --border: rgba(0, 140, 255, 0.28);
+    --border-bright: rgba(0, 210, 255, 0.6);
+    --border-red: rgba(255, 0, 51, 0.5);
+
+    --text: #f8fafc;
+    --text-2: #94a3b8;
+    --text-3: #64748b;
+
+    /* Status Colors */
+    --green: #10b981;
+    --green-dim: rgba(16, 185, 129, 0.16);
+    --blue: #0088ff;
+    --blue-dim: rgba(0, 136, 255, 0.16);
+    --red: #ff0033;
+    --red-dim: rgba(255, 0, 51, 0.16);
+    --orange: #f59e0b;
+    --purple: #a855f7;
+    --teal: #14b8a6;
+    --cyan: #06b6d4;
+
+    /* Radii */
+    --r-xs: 6px;
+    --r-sm: 10px;
+    --r-md: 14px;
+    --r-lg: 18px;
+    --r-xl: 24px;
+    --r-pill: 9999px;
+
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+    --nav-height: 68px;
+    --header-height: 98px;
+    --status-height: 30px;
+
+    /* Shadows & Glows */
+    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.65), inset 0 0 15px rgba(0, 140, 255, 0.05);
+    --shadow-hover: 0 10px 35px rgba(0, 140, 255, 0.25), inset 0 0 20px rgba(0, 210, 255, 0.1);
+    --shadow-red-glow: 0 0 20px rgba(255, 0, 51, 0.6);
+    --shadow-blue-glow: 0 0 20px rgba(0, 136, 255, 0.6);
+}
+
+html {
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+    background: var(--bg);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    position: relative;
+    max-width: 100vw;
+}
+
+/* ==========================================================================
+   POLICE EMERGENCY DUAL FLASHERS (S.P.D. STROBE BEACON)
+   ========================================================================== */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 3px;
+    background: linear-gradient(90deg, #ff0033 0%, #ff0033 46%, #ffffff 50%, #0088ff 54%, #0088ff 100%);
+    z-index: 9999999;
+    box-shadow: 0 0 12px rgba(255, 0, 51, 0.8), 0 0 18px rgba(0, 136, 255, 0.8);
+    animation: spdSirenStrobe 1.2s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes spdSirenStrobe {
+    0% {
+        opacity: 0.85;
+        box-shadow: -15px 0 20px rgba(255, 0, 51, 0.9), 15px 0 20px rgba(0, 136, 255, 0.4);
+    }
+    100% {
+        opacity: 1;
+        box-shadow: -15px 0 20px rgba(255, 0, 51, 0.4), 15px 0 20px rgba(0, 136, 255, 0.95);
+    }
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUND — S.P.D. Delta Base Cyber Grid & Scanning Laser
+   ========================================================================== */
+.ambient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(255, 0, 51, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(0, 140, 255, 0.16) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, #060e1d 0%, #03070f 65%, #010307 100%);
+}
+
+/* Holographic Cyber Grid */
+.ambient-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(0, 140, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 140, 255, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.75;
+}
+
+/* Tactical Scanning Laser Line */
+.ambient-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff0033 30%, #00d2ff 70%, transparent);
+    box-shadow: 0 0 15px #00d2ff, 0 0 25px #ff0033;
+    animation: spdRadarSweep 6s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes spdRadarSweep {
+    0% { transform: translateY(0vh); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.orb-1 {
+    width: 260px;
+    height: 260px;
+    background: #ff0033;
+    top: -60px;
+    right: -40px;
+    animation: orbBob 10s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+    width: 240px;
+    height: 240px;
+    background: #0088ff;
+    bottom: 90px;
+    left: -40px;
+    animation: orbBob 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbBob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(20px, 25px) scale(1.15); }
+}
+
+/* ==========================================================================
+   STATUS BAR
+   ========================================================================== */
+.status-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px;
+    padding-top: calc(6px + var(--safe-top));
+    height: calc(var(--status-height) + var(--safe-top));
+    background: rgba(3, 7, 18, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-2);
+    border-bottom: 1px solid rgba(0, 140, 255, 0.25);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.status-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--spd-green);
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 0 8px var(--spd-green);
+    animation: spdBeaconPulse 2s ease-in-out infinite;
+}
+
+.status-dot.loading {
+    background: var(--spd-gold);
+    box-shadow: 0 0 8px var(--spd-gold);
+}
+
+.status-dot.error {
+    background: var(--spd-red);
+    box-shadow: 0 0 8px var(--spd-red);
+    animation: none;
+}
+
+@keyframes spdBeaconPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.25); opacity: 0.85; }
+}
+
+.status-bar-right {
+    font-weight: 800;
+    font-family: 'Rajdhani', sans-serif;
+    color: #cbd5e1;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   APP HEADER
+   ========================================================================== */
+.app-header {
+    position: fixed;
+    top: calc(var(--status-height) + var(--safe-top));
+    left: 0;
+    right: 0;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    height: 68px;
+    background: rgba(5, 11, 24, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 140, 255, 0.28);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.header-logo {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: radial-gradient(circle at 35% 35%, #152642 0%, #0a1324 50%, #030712 100%);
+    border: 2px solid var(--spd-gold);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5), 0 0 20px rgba(0, 136, 255, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.header-logo:hover, .header-logo:active {
+    transform: scale(1.06);
+    box-shadow: 0 0 16px rgba(255, 0, 51, 0.7), 0 0 25px rgba(0, 210, 255, 0.6);
+}
+
+.header-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.header-info h1 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-shadow: 0 0 10px rgba(255, 0, 51, 0.7), 0 0 20px rgba(0, 136, 255, 0.4);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-info p {
+    font-size: 0.65rem;
+    color: #38bdf8;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    background: rgba(0, 136, 255, 0.16);
+    border: 1px solid rgba(0, 210, 255, 0.35);
+    padding: 1px 7px;
+    border-radius: var(--r-xs);
+    margin-top: 3px;
+}
+
+/* Logout Button — S.P.D. Tactical Disengage */
+.header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logout-btn {
+    background: rgba(255, 0, 51, 0.12);
+    border: 1.5px solid rgba(255, 0, 51, 0.45);
+    border-radius: var(--r-sm);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff3355;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 8px rgba(255, 0, 51, 0.25);
+}
+
+.logout-btn:hover, .logout-btn:active {
+    background: var(--spd-red);
+    color: #ffffff;
+    border-color: var(--spd-gold);
+    box-shadow: 0 0 15px rgba(255, 0, 51, 0.7);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   MAIN CONTENT AREA (Scrollable)
+   ========================================================================== */
+.main-content {
+    position: fixed;
+    top: calc(var(--status-height) + var(--safe-top) + 68px);
+    left: 0;
+    right: 0;
+    bottom: calc(var(--nav-height) + var(--safe-bottom));
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1;
+    padding: 14px 14px 28px;
+    scroll-behavior: smooth;
+    max-width: 100vw;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: spdFadeIn 0.25s ease-out;
+}
+
+@keyframes spdFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   STATS ROW — Tactical S.P.D. Counters
+   ========================================================================== */
+.stats-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.stat-chip {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 10px 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s;
+    backdrop-filter: blur(12px);
+}
+
+.stat-chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--spd-blue), var(--spd-blue-cyan));
+    box-shadow: 0 0 8px var(--spd-blue);
+}
+
+.stat-chip.stat-green::before {
+    background: linear-gradient(90deg, #10b981, #34d399);
+    box-shadow: 0 0 8px #10b981;
+}
+
+.stat-chip.stat-red::before {
+    background: linear-gradient(90deg, #ff0033, #ff4466);
+    box-shadow: 0 0 8px #ff0033;
+}
+
+.stat-value {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.stat-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'Inter', sans-serif;
+}
+
+.stat-green .stat-value { color: #34d399; text-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+.stat-red .stat-value { color: #ff3355; text-shadow: 0 0 10px rgba(255, 0, 51, 0.4); }
+
+/* ==========================================================================
+   SEARCH BAR — Tactical HUD Capsule
+   ========================================================================== */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    margin-bottom: 12px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(12px);
+}
+
+.search-bar:focus-within {
+    border-color: var(--spd-blue-cyan);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+}
+
+.search-bar svg {
+    flex-shrink: 0;
+    color: #38bdf8;
+}
+
+.search-bar input {
+    flex: 1;
+    border: none;
+    background: none;
+    color: #f1f5f9;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: var(--text-3);
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   FILTER ROW — Tactical Pills
+   ========================================================================== */
+.filter-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.pill {
+    flex: 1;
+    padding: 7px 0;
+    text-align: center;
+    border: 1px solid var(--border);
+    background: rgba(8, 16, 32, 0.7);
+    color: var(--text-2);
+    border-radius: var(--r-xs);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+}
+
+.pill:hover {
+    color: #ffffff;
+    border-color: rgba(0, 210, 255, 0.5);
+}
+
+.pill.active {
+    background: linear-gradient(135deg, #ff0033 0%, #b80024 100%);
+    color: #ffffff;
+    border-color: var(--spd-gold);
+    box-shadow: 0 0 12px rgba(255, 0, 51, 0.5);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   ACTION BUTTONS — S.P.D. Runner Actions
+   ========================================================================== */
+.action-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-xs);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(10, 20, 40, 0.85);
+    color: #e2e8f0;
+    transition: all 0.18s;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    border-color: var(--spd-blue-cyan);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 140, 255, 0.3);
+}
+
+.action-primary {
+    background: linear-gradient(135deg, #0088ff 0%, #0055b3 100%) !important;
+    border-color: var(--spd-blue-cyan) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(0, 136, 255, 0.45) !important;
+}
+
+.action-primary:hover {
+    box-shadow: 0 0 18px rgba(0, 210, 255, 0.7) !important;
+}
+
+.action-red {
+    background: rgba(255, 0, 51, 0.15) !important;
+    border-color: rgba(255, 0, 51, 0.45) !important;
+    color: #ff4466 !important;
+}
+
+.action-red:hover {
+    background: var(--spd-red) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(255, 0, 51, 0.6) !important;
+}
+
+/* ==========================================================================
+   DEVICE LIST & CARDS — High-Tech Cyber Cards
+   ========================================================================== */
+.device-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.device-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    padding: 12px 14px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+}
+
+.device-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--spd-blue);
+    box-shadow: 0 0 8px var(--spd-blue);
+    opacity: 0.7;
+    transition: all 0.2s;
+}
+
+.device-card.muted::before {
+    background: var(--spd-red);
+    box-shadow: 0 0 8px var(--spd-red);
+}
+
+.device-card:hover {
+    border-color: rgba(0, 210, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 140, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.device-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(0, 136, 255, 0.15);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.device-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.device-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+}
+
+.device-sub {
+    font-size: 0.68rem;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+}
+
+.device-badge {
+    padding: 2px 7px;
+    border-radius: var(--r-xs);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.device-badge.online {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.device-badge.offline {
+    background: rgba(100, 116, 139, 0.15);
+    color: #94a3b8;
+    border: 1px solid rgba(100, 116, 139, 0.35);
+}
+
+/* ==========================================================================
+   SMS LOGS LIST
+   ========================================================================== */
+.sms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sms-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    padding: 12px 14px;
+    box-shadow: var(--shadow-card);
+    transition: all 0.2s;
+    backdrop-filter: blur(12px);
+}
+
+.sms-card:hover {
+    border-color: rgba(0, 210, 255, 0.4);
+    box-shadow: 0 4px 18px rgba(0, 140, 255, 0.2);
+}
+
+.sms-sender {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #38bdf8;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sms-time {
+    font-size: 0.65rem;
+    color: var(--text-3);
+    font-weight: 500;
+}
+
+.sms-body {
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   SMS BOMBER — Delta Blaster Enforcer
+   ========================================================================== */
+.bomber-hero {
+    text-align: center;
+    padding: 16px 14px;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 0, 51, 0.18) 0%, rgba(8, 16, 32, 0.8) 70%);
+    border: 1px solid rgba(255, 0, 51, 0.35);
+    border-radius: var(--r-md);
+    margin-bottom: 12px;
+    box-shadow: 0 0 25px rgba(255, 0, 51, 0.2);
+}
+
+.bomber-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff0033 0%, #0088ff 100%);
+    border: 2px solid var(--spd-gold);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    box-shadow: 0 0 15px rgba(255, 0, 51, 0.6);
+}
+
+.bomber-hero h2 {
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 0, 51, 0.6);
+    margin-bottom: 4px;
+}
+
+.bomber-hero p {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.bomber-stats {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mode-toggle {
+    display: flex;
+    background: rgba(6, 12, 24, 0.8);
+    border-radius: var(--r-xs);
+    padding: 3px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 7px 0;
+    border: none;
+    background: transparent;
+    color: var(--text-2);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--r-xs);
+    transition: all 0.2s;
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #ff0033, #0088ff);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 0, 51, 0.4);
+    font-weight: 700;
+}
+
+.form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 16px 14px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(14px);
+}
+
+.form-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.form-label:first-child {
+    margin-top: 0;
+}
+
+.mobile-input, .mobile-textarea, .mobile-select {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xs);
+    padding: 8px 12px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.mobile-input:focus, .mobile-textarea:focus, .mobile-select:focus {
+    border-color: var(--spd-blue-cyan);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+.stepper-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 6px;
+}
+
+.stepper-btn {
+    flex-shrink: 0;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    background: rgba(10, 20, 40, 0.85);
+    color: #ffffff;
+    border-radius: var(--r-xs);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.stepper-btn:hover {
+    border-color: var(--spd-blue-cyan);
+    background: rgba(0, 136, 255, 0.2);
+}
+
+.stepper-input {
+    flex: 1;
+    height: 38px;
+    text-align: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xs);
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    outline: none;
+}
+
+.sim-toggle {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.sim-btn {
+    flex: 1;
+    padding: 8px 0;
+    border: 1px solid var(--border);
+    background: rgba(8, 16, 32, 0.7);
+    color: var(--text-2);
+    border-radius: var(--r-xs);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+}
+
+.sim-btn.active {
+    background: linear-gradient(135deg, #0088ff 0%, #0055b3 100%);
+    border-color: var(--spd-blue-cyan);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 136, 255, 0.45);
+    font-weight: 700;
+}
+
+.launch-btn {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid var(--spd-gold);
+    border-radius: var(--r-xs);
+    background: linear-gradient(135deg, #ff0033 0%, #cc0029 100%);
+    color: #ffffff;
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 0 15px rgba(255, 0, 51, 0.5);
+    transition: all 0.2s;
+    margin-top: 14px;
+}
+
+.launch-btn:hover {
+    box-shadow: 0 0 25px rgba(255, 0, 51, 0.8), 0 0 10px var(--spd-gold);
+    transform: translateY(-1px);
+}
+
+.stop-btn {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ff4466;
+    border-radius: var(--r-xs);
+    background: rgba(255, 0, 51, 0.2);
+    color: #ff4466;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   BOTTOM NAVIGATION BAR — S.P.D. Delta Morph Tabs
+   ========================================================================== */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: calc(var(--nav-height) + var(--safe-bottom));
+    padding-bottom: var(--safe-bottom);
+    background: rgba(4, 9, 20, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 140, 255, 0.28);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 0 4px;
+    border: none;
+    background: none;
+    color: var(--text-3);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.nav-item svg {
+    transition: all 0.2s;
+    stroke: var(--text-3);
+}
+
+.nav-item.active {
+    color: #ffffff;
+}
+
+.nav-item.active svg {
+    stroke: #ff0033;
+    filter: drop-shadow(0 0 8px rgba(255, 0, 51, 0.7));
+    transform: translateY(-2px);
+}
+
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 24px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff0033, #0088ff);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 0 8px rgba(255, 0, 51, 0.8);
+}
+
+/* ==========================================================================
+   SERVER SELECTION MODAL — S.P.D. Delta Base Security Clearance
+   ========================================================================== */
+.server-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.server-modal.hidden {
+    display: none;
+}
+
+.server-modal-content {
+    background: rgba(6, 14, 28, 0.95);
+    border: 2px solid var(--spd-gold);
+    border-radius: var(--r-lg);
+    width: 100%;
+    max-width: 380px;
+    padding: 24px 20px;
+    box-shadow: 0 0 40px rgba(255, 0, 51, 0.4), 0 0 60px rgba(0, 140, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: spdModalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.server-modal-content::before {
+    content: "S.P.D. DELTA COMMAND // LEVEL 5 CLEARANCE";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, #ff0033, #0088ff);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-align: center;
+    padding: 3px 0;
+    letter-spacing: 1px;
+}
+
+@keyframes spdModalPop {
+    0% { transform: scale(0.9) translateY(15px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.server-modal-header {
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 18px;
+}
+
+.server-modal-header h2 {
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 0, 51, 0.6);
+}
+
+.server-modal-header p {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.server-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.server-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: rgba(10, 20, 40, 0.85);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.server-btn:hover {
+    border-color: var(--spd-blue-cyan);
+    box-shadow: 0 0 15px rgba(0, 140, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.server-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon-emerald { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.icon-pink { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+.icon-blue { background: rgba(0, 136, 255, 0.2); color: #38bdf8; }
+.icon-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+.icon-orange { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+.icon-red { background: rgba(255, 0, 51, 0.2); color: #ff3355; }
+
+.server-info {
+    flex: 1;
+    text-align: left;
+}
+
+.server-name {
+    font-family: 'Rajdhani', 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   DEVICE DETAIL BOTTOM SHEET
+   ========================================================================== */
+.sheet-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(3, 7, 18, 0.75);
+    backdrop-filter: blur(12px);
+    display: none;
+}
+
+.sheet-overlay.active {
+    display: block;
+}
+
+.sheet-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 85vh;
+    background: rgba(8, 16, 32, 0.96);
+    border-top: 2px solid var(--spd-gold);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    padding: 18px 16px;
+    overflow-y: auto;
+    box-shadow: 0 -8px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 140, 255, 0.25);
+    backdrop-filter: blur(20px);
+}
+
+.sheet-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--text-3);
+    border-radius: 2px;
+    margin: 0 auto 12px;
+}
+
+.sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.sheet-header h2 {
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.sheet-close {
+    background: rgba(255, 0, 51, 0.15);
+    border: 1px solid rgba(255, 0, 51, 0.4);
+    color: #ff3355;
+    padding: 4px 12px;
+    border-radius: var(--r-xs);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sheet-device-id {
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: #38bdf8;
+    margin-bottom: 12px;
+    background: rgba(0, 136, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 210, 255, 0.25);
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: calc(var(--nav-height) + 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    padding: 8px 16px;
+    background: rgba(6, 14, 28, 0.95);
+    border: 1px solid var(--spd-gold);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: var(--r-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 0, 51, 0.5);
+    pointer-events: none;
+    animation: spdToastIn 0.2s ease-out;
+}
+
+@keyframes spdToastIn {
+    0% { opacity: 0; transform: translate(-50%, 10px); }
+    100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    color: var(--text-3);
+    text-align: center;
+    gap: 8px;
+}
+
+.empty-state p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.empty-state span {
+    font-size: 0.72rem;
+    color: var(--text-3);
+}
